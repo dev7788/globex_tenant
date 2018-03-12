@@ -253,10 +253,11 @@ Devise.setup do |config|
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
   #
-  # config.warden do |manager|
-  #   manager.intercept_401 = false
-  #   manager.default_strategies(scope: :user).unshift :some_external_strategy
-  # end
+  config.warden do |manager|
+    # manager.intercept_401 = false
+    # manager.default_strategies(scope: :user).unshift :some_external_strategy
+    manager.failure_app = CustomFailure
+  end
 
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
@@ -272,6 +273,9 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
+  config.omniauth :saml,
+                  idp_cert_fingerprint: '76:C5:6A:64:E0:D8:81:44:11:24:F2:9C:1B:41:56:27:6E:3B:FB:8C',
+                  idp_sso_target_url: 'https://fs.thinkthroughmath.com/adfs/ls/auth/integrated/?wa=wsignin1.0&wtrealm=urn:federation:omniauth'
 
 
 end

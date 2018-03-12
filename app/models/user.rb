@@ -15,5 +15,22 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :invitable, :invite_for => 2.weeks
+       :recoverable, :rememberable, :trackable, :validatable
+  devise :invitable, :invite_for => 2.weeks
+  devise :omniauthable, :omniauth_providers => [:saml]
+
+
+  def self.find_for_saml_oauth(auth, signed_in_resource=nil)
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    unless user
+      user = User.create(name: auth.extra.raw_info.my_own_name,
+                         provider:auth.provider,
+                         uid:auth.uid,
+                         email:auth.info.email,
+                         password:Devise.friendly_token[0,20]
+      )
+    end
+    user
+  end
+
 end
