@@ -1,0 +1,10 @@
+<% if user_signed_in? %>
+  <% if current_user.try(:admin?) %>
+    <h3>Welcome</h3>
+    <p><%= link_to 'Users:', users_path %> <%= User.count %> registered</p>
+  <% else %>
+    <h3>Hello World</h3>
+  <% end %>
+<% else %>
+<h3>Hello World</h3>
+<% end %>

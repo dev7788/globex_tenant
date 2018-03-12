@@ -1,0 +1,25 @@
+<td>
+  <%= link_to user.email, user %>
+</td>
+<td>
+  <%= form_for(user) do |f| %>
+    <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
+    <%= f.submit 'Change Role', :class => 'button-xs' %>
+  <% end %>
+</td>
+<td>
+  <% if user.try(:active?) %>
+    <%= form_for(user) do |f| %>
+      <%= f.hidden_field :state, :value => :suspend %>
+      <%= f.submit 'Suspend', :class => 'button-xs' %>
+    <% end %>
+  <% else %>
+      <%= form_for(user) do |f| %>
+          <%= f.hidden_field :state, :value => :active %>
+          <%= f.submit 'Unsuspend', :class => 'button-xs' %>
+      <% end %>
+  <% end %>
+</td>
+<td>
+  <%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') unless user == current_user %>
+</td>
