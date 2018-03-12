@@ -30,6 +30,11 @@ class UsersController < ApplicationController
     redirect_to users_path, :notice => "User deleted."
   end
 
+  def invite
+    User.invite!(:email => params[:user][:email], :name => params[:user][:name])
+    redirect_to users_path, :notice => "Invited."
+  end
+
   private
 
   def admin_only

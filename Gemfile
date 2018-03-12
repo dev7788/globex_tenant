@@ -38,3 +38,12 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
 end
+
+# Added at 2018-03-11 22:08:41 -0500 by minimac:
+gem "devise_invitable", "~> 1.7"
+
+# Added at 2018-03-12 08:31:09 -0500 by minimac:
+gem "pry-byebug", "~> 3.4"
+
+# Added at 2018-03-12 08:53:21 -0500 by minimac:
+gem "binding_of_caller", "~> 0.8.0"
