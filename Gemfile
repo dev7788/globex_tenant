@@ -47,3 +47,6 @@ gem "pry-byebug", "~> 3.4"
 
 # Added at 2018-03-12 08:53:21 -0500 by minimac:
 gem "binding_of_caller", "~> 0.8.0"
+
+# Added at 2018-03-12 09:40:35 -0500 by minimac:
+gem "omniauth-saml", "~> 1.10"
