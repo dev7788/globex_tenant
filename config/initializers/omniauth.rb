@@ -30,8 +30,8 @@ CERTIFICATE
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :saml,
-           :assertion_consumer_service_url => "http://localhost:3000/users/auth/saml",
-           :issuer                         => "http://localhost",
-           :idp_sso_target_url             => "http://localhost/simplesaml/www/saml2/idp/SSOService.php",
+           :assertion_consumer_service_url => "http://localhost:3000/users/auth/saml/callback",
+           :issuer                         => "http://localhost:3000/saml/metadata",
+           :idp_sso_target_url             => "http://localhost/saml2/idp/SSOService.php",
            :idp_cert                       => CERTIFICATE
 end

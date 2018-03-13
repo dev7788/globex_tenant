@@ -22,11 +22,15 @@ class User < ApplicationRecord
 
   def self.find_for_saml_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
+
+    name = auth.info.name || 'no name'
+    email = auth.info.email || Faker::Internet.email
+
     unless user
-      user = User.create(name: auth.extra.raw_info.my_own_name,
+      user = User.create(name: name,
                          provider:auth.provider,
                          uid:auth.uid,
-                         email:auth.info.email,
+                         email:email,
                          password:Devise.friendly_token[0,20]
       )
     end
