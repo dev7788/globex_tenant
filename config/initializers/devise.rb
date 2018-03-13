@@ -273,9 +273,5 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
-  config.omniauth :saml,
-                  idp_cert_fingerprint: '76:C5:6A:64:E0:D8:81:44:11:24:F2:9C:1B:41:56:27:6E:3B:FB:8C',
-                  idp_sso_target_url: 'https://fs.thinkthroughmath.com/adfs/ls/auth/integrated/?wa=wsignin1.0&wtrealm=urn:federation:omniauth'
-
 
 end
